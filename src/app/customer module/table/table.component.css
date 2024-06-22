@@ -1,0 +1,23 @@
+.table-chairs {
+    display: flex;
+    padding: .5em;
+}
+
+.chairs {
+    display: flex;
+    justify-content: center;
+}
+
+.chair {
+    font-size: 2em;
+}
+
+.table {
+    width: 7em;
+    text-align: center;
+}
+
+.svg {
+    width: 4em;
+    height: 4em;
+}

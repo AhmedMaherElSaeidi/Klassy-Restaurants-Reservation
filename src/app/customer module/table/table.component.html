@@ -1,0 +1,8 @@
+<div class="table-chairs">
+    <div class="table">
+        <img src="assets/svg/table-svgrepo-com.svg" alt="table" class="svg">
+    </div>
+    <div class="chairs">
+        <fa-icon *ngFor="let item of range(numberOfSeats || 0)" [icon]="faChair" class="chair"></fa-icon>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+.navbar {
+    margin-bottom: 2em;
+}
+
+.navbar > .nav-bar {
+    margin: 0em auto;
+}
+
+.ul-edit-restaurants {
+    margin: 0 auto;
+}
+
+.ul-edit-restaurants > li {
+    margin: 0 1em;
+}
+
+.active {
+    color: goldenrod !important;
+}
+
+a{
+    text-decoration: none;
+    color: grey;
+}
+
+a:hover,
+a:focus,
+a:active,
+a:visited {
+    color: initial;
+    text-decoration: none;
+    cursor: pointer;
+}

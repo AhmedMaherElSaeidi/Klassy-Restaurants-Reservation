@@ -1,0 +1,29 @@
+<table class="table table-hover" *ngIf="this.user?.['person'] != undefined && this.user?.['person'].role === 'vendor'">
+    <caption *ngIf="reservationsLen != 0">You have {{reservationsLen}} reservation at your restaurants.
+    </caption>
+    <caption *ngIf="reservationsLen == 0">You have no reservation at your restaurants.</caption>
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">RestaurantName</th>
+            <th scope="col">TableNumber</th>
+            <th scope="col">ReservationDate</th>
+            <th scope="col">TimeSlot</th>
+            <th scope="col">Seats</th>
+            <th scope="col">customerID</th>
+            <th scope="col">guestName</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let rservation of reservations;index as i">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{getRestaurantName(rservation['restaurantID'])}}</td>
+            <td>{{rservation['tableID']}}</td>
+            <td>{{rservation['ReservationDate']}}</td>
+            <td>{{rservation['timeslot']}}</td>
+            <td>{{rservation['numberOfSeats']}}</td>
+            <td>{{rservation['customerID']}}</td>
+            <td>{{rservation['guestName']}}</td>
+        </tr>
+    </tbody>
+</table>

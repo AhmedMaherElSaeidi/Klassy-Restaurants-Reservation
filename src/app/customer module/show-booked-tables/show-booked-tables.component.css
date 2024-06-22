@@ -1,0 +1,11 @@
+.table-container {
+    padding: 1em;
+}
+
+.fa-icon {
+    cursor: pointer;
+}
+
+.fa-icon:hover {
+    color: red;
+}

@@ -1,0 +1,32 @@
+{{authenValidate()}}
+<div *ngIf="this.user?.['person'] != undefined">
+    <div class="panel-header">
+        <div class="search-box">
+            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref"
+                (change)="setCategory($event.target)">
+                <option selected value="*">All Categories</option>
+                <option value="{{categ}}" *ngFor="let categ of getFoodCategories()">{{categ}}</option>
+            </select>
+            <h3>Displaying restaurants of {{category}}</h3>
+        </div>
+    </div>
+    <div class="panel-content">
+        <div class="card-group">
+            <div class="card" *ngFor="let restaurant of getRestaurants(category);index as i" style="margin: .5em;">
+                <img class="card-img-top" src="assets/images/restaurant-image ({{(i%14) + 1}}).png" alt="Card image cap"
+                    [routerLink]="['/reserve-table', restaurant.id]">
+                <div class="card-body">
+                    <h5 class="card-title">{{restaurant.restaurantName}}</h5>
+                    <h6 class="card-title">{{restaurant.category}}</h6>
+                    <p class="card-text desc">{{restaurant.description}}</p>
+                    <p class="card-text card-p"><small class="text-muted">{{restaurant.location}}</small></p>
+                    <p class="card-text card-p"><small class="text-muted">{{restaurant.tables.length}} tables</small>
+                    </p>
+                </div>
+            </div>
+            <div *ngIf="getRestaurants(category).length === 0" class="message-center">
+                <div class="message">Sorry brad, we don't have this category yet.</div>
+            </div>
+        </div>
+    </div>
+</div>

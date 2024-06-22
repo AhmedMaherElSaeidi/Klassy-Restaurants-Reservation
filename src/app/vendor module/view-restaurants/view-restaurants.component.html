@@ -1,0 +1,20 @@
+<div class="card-group" *ngIf="this.user?.['person'] != undefined && this.user?.['person'].role === 'vendor'">
+    <div class="card" *ngFor="let restaurant of restaurants; index as i" style="margin: .5em;">
+        <img class="card-img-top" src="assets/images/restaurant-image ({{(i%14) + 1}}).png" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{restaurant.restaurantName}}</h5>
+            <h6 class="card-title">{{restaurant.category}}</h6>
+            <p class="card-text desc">{{restaurant.description}}</p>
+            <p class="card-text card-p"><small class="text-muted">{{restaurant.location}}</small></p>
+            <p class="card-text card-p"><small class="text-muted">{{restaurant.tables.length}} tables.</small></p>
+            <p class="card-text card-p"><small class="text-muted">{{restaurant.reservations.length}} Reservation.</small></p>
+        </div>
+        <div class="fa-trash" (click)="removeRestaurant(restaurant.id, restaurant.imgURL)"><fa-icon
+                [icon]="faTrash"></fa-icon></div>
+    </div>
+    <div class="message" *ngIf="restaurants.length == 0">
+        <div class="message-box">
+            <b><i>You don't have restaurants yet.</i></b>
+        </div>
+    </div>
+</div>

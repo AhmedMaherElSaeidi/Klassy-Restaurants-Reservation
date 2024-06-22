@@ -1,0 +1,116 @@
+<!-- Booking Start -->
+<div class="booking" *ngIf="this.user?.['person'] != undefined && this.user?.['person'].role === 'vendor'">
+    <div class="container">
+        <div class="col-lg-7">
+            <div class="booking-content">
+                <div class="section-header">
+                    <img [src]="" alt="">
+                    <p><strong>Klassy</strong></p>
+                    <h2>The best place to deploy your Restaurant and increase income.</h2>
+                </div>
+                <div class="card-group" *ngIf="puplished">
+                    <div class="card">
+                        <img class="card-img-top" src="{{getIMG(_restaurant?.imgURL!)}}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{_restaurant?.restaurantName!}}</h5>
+                            <p class="card-text">Location : {{_restaurant?.location!}}</p>
+                            <p class="card-text">Category : {{_restaurant?.category!}}</p>
+                            <p class="card-text">Time slots : {{timeSlots[+_restaurant?.timeSlots!]}}</p>
+                            <p class="card-text"><small class="text-muted">Tables :
+                                    {{_restaurant?.tables?.length!}}</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur
+                        facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum,
+                        viverra quis sem.
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur
+                        facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum,
+                        viverra quis sem. Curabitur non nisl nec nisi scelerisque maximus. Aenean consectetur convallis
+                        porttitor. Aliquam interdum at lacus non blandit.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="booking-form">
+                <form [formGroup]="puplishform!" (ngSubmit)="publish()">
+                    <div class="form-header">
+                        <h2>RESTAURANT</h2>
+                    </div>
+                    <div class="control-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Restaurant Name" required="required"
+                                formControlName="name" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="input-group" data-target-input="nearest">
+                            <input type="text" class="form-control" placeholder="Location" formControlName="location" />
+                            <div class="input-group-append">
+                                <div class="input-group-text"><fa-icon [icon]="faLocationArrow"
+                                        class="color-bk"></fa-icon>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="input-group time-slots" id="time-slots" data-target-input="nearest">
+                            <select class="custom-select form-control" data-target="#category"
+                                data-toggle="datecategorypicker" formControlName="category">
+                                <option value=null selected disabled>Category</option>
+                                <option value="{{category}}" *ngFor="let category of foodCategories">{{category}}
+                                </option>
+                            </select>
+                            <div class="input-group-append">
+                                <div class="input-group-text"><fa-icon [icon]="faInfo" class="color-bk"></fa-icon>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="input-group time-slots" id="time-slots" data-target-input="nearest">
+                            <select class="custom-select form-control" formControlName="timeslot">
+                                <option value=null selected disabled>time slots</option>
+                                <option value="{{i}}" *ngFor="let category of timeSlots; index as i">{{category}}
+                                </option>
+                            </select>
+                            <div class="input-group-append">
+                                <div class="input-group-text"><fa-icon [icon]="faClock" class="color-bk"></fa-icon>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="input-group date" id="date" data-target-input="nearest">
+                            <input type="number" class="form-control" placeholder="Number of tables" min="5" max="15"
+                                formControlName="tablesCount" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="input-group" data-target-input="nearest">
+                            <textarea  cols="50" rows="3" formControlName="description" style="width: 100%;"></textarea>
+                        </div>
+                    </div>
+                    <div
+                        [class]="file_choosed?['file-upload', 'control-group', 'active']:['file-upload', 'control-group']">
+                        <div class="file-select">
+                            <div class="file-select-button">Choose Image</div>
+                            <div class="file-select-name"> {{choosen_file}}</div>
+                            <input type="file" (change)="inputFile($event.target)" formControlName="imgURL">
+                        </div>
+                    </div>
+                    <div>
+                        <button [class]="puplishform?.valid?['btn','custom-btn']:['btn','custom-btn', 'banned']"
+                            type="submit" [disabled]="!puplishform?.valid">Publish Now</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Booking End -->

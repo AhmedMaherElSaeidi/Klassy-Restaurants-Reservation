@@ -1,0 +1,36 @@
+{{authenValidate()}}
+<div class="table-container" *ngIf="this.user?.['person'] != undefined">
+    <table class="table table-hover">
+        <caption *ngIf="reservationCount! > 0">Welcome {{this.user?.['person'].name}}, here are your
+            reservations.<br>{{reservationCount}} reservation.</caption>
+        <caption *ngIf="reservationCount! === 0">Welcome {{this.user?.['person'].name}}, You don't have reservation yet.
+        </caption>
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">RestaurantName</th>
+                <th scope="col">GuestName</th>
+                <th scope="col">TableNumber</th>
+                <th scope="col">ReservationDate</th>
+                <th scope="col">NumberOfSeats</th>
+                <th scope="col">TimeSlot</th>
+                <th scope="col">Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let reservation of reservations;index as i">
+                <th scope="row">{{i+1}}</th>
+                <td>{{getRestaurantName(reservation['restaurantID'])}}</td>
+                <td>{{reservation['guestName']}}</td>
+                <td>{{reservation['tableID']}}</td>
+                <td>{{reservation['ReservationDate']}}</td>
+                <td>{{reservation['numberOfSeats']}}</td>
+                <td>{{reservation['timeslot']}}</td>
+                <td
+                    (click)="remove(reservation['id'],reservation['restaurantID'],reservation['tableID'],reservation['ReservationDate'],reservation['timeslot'])">
+                    <fa-icon [icon]="faTrash" class="fa-icon"></fa-icon>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

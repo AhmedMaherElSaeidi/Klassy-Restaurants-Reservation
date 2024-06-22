@@ -1,0 +1,99 @@
+<!-- Booking Start -->
+{{authenValidate()}}
+<div class="booking" *ngIf="this.user?.['person'] != undefined">
+    <div class="container" (mouseenter)="validateDate">
+        <div class="col-lg-5">
+            <div class="booking-form">
+                <form [formGroup]="reservationForm!" (ngSubmit)="reserve()">
+                    <div class="form-header">
+                        <h2>RESERVATION</h2>
+                    </div>
+                    <div class="control-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Name" required="required"
+                                formControlName="name" />
+                            <div class="input-group-append">
+                                <div class="input-group-text"><fa-icon [icon]="faUser" class="color-bk"></fa-icon>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="input-group">
+                            <select class="custom-select form-control" formControlName="table">
+                                <option [value]="null" selected>Table</option>
+                                <option value="{{table}}" *ngFor="let table of restaurant?.tables;index as i">
+                                    {{restaurant?.restaurantName}} - Table {{i+1}}</option>
+                            </select>
+                            <div class="input-group-append">
+                                <div class="input-group-text"><fa-icon [icon]="faTable" class="color-bk"></fa-icon>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="input-group date">
+                            <input type="date" class="form-control datetimepicker-input" placeholder="Date"
+                                formControlName="date" />
+                        </div>
+                    </div>
+                    <div class="control-group" *ngIf="showTimeSlots">
+                        <div class="input-group time">
+                            <select class="custom-select form-control" formControlName="time">
+                                <option [value]="null" selected>Time</option>
+                                <option value="{{slot[1]?slot[0] + 1:undefined}}" *ngFor="let slot of availableSlots; index as i;">
+                                    {{restaurantTimeSlots[slot[0]]}}{{slot[1]?'':' [RESERVED]'}}</option>
+                            </select>
+                            <div class="input-group-append">
+                                <div class="input-group-text"><fa-icon [icon]="faClock" class="color-bk"></fa-icon>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="input-group">
+                            <select class="custom-select form-control" (change)="getSeatsCount($event.target)"
+                                formControlName="guests">
+                                <option [value]="null" selected>Guests</option>
+                                <option [value]="guest" *ngFor="let guest of guests">{{guest}} Guest</option>
+                            </select>
+                            <div class="input-group-append">
+                                <div class="input-group-text"><fa-icon [icon]="faUserPlus" class="color-bk"></fa-icon>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p *ngIf="![undefined, null, 'null'].includes(reservationForm?.value.table)">Table :
+                        {{reservationForm?.value.table}}</p>
+                    <app-table [numberOfSeats]="seatsCount"></app-table>
+                    <div>
+                        <button class="btn custom-btn"
+                            [class]="(reservationForm?.valid)?['btn', 'custom-btn']:['btn', 'custom-btn', 'banned']"
+                            type="submit" [disabled]="!reservationForm?.valid">Reserve</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-7" style="margin-right: 3em;">
+            <div class="booking-content">
+                <div class="section-header">
+                    <h2>{{restaurant?.['restaurantName']}} RESTAURANT</h2>
+                    <img src="assets/images/restaurant-image (13).png" alt="restaurant_img" class="header-img">
+                </div>
+                <div class="about-text">
+                    <p>Location {{restaurant?.['location']}}</p>
+                    <p>Time slots {{restaurantTimeSlots}}</p>
+                    <p>{{restaurant?.['category']}} Category</p>
+                    <p>{{restaurant?.['description']}}</p>
+                    <small>{{restaurant?.['tables']?.length}}{{restaurant?.['tables']?.length! > 1?' tables':' table'}}
+                        available.</small>
+                </div>
+                <div class="about-button">
+                    <button class="btn btn-info" [routerLink]="['/','show-restaurants']">Return</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Booking End -->

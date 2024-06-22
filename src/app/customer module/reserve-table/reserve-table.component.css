@@ -1,0 +1,119 @@
+/*******************************/
+/********* Booking CSS *********/
+/*******************************/
+.color-bk {
+    color: black;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+.booking {
+    position: relative;
+    width: 100%;
+    padding: 5em;
+}
+
+.booking .booking-content {
+    padding: 0px 0 15px 0;
+    overflow: hidden;
+}
+
+.booking .booking-content .section-header {
+    margin-bottom: 30px;
+}
+
+.booking .booking-form {
+    padding: 60px 30px;
+    background: whitesmoke;
+    border-radius: 0.2em;
+}
+
+.booking .booking-form .control-group {
+    margin-bottom: 15px;
+}
+
+.booking .booking-form .input-group-text {
+    position: absolute;
+    padding: 0;
+    border: none;
+    background: none;
+    top: 15px;
+    right: 20px;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.booking .booking-form .form-control {
+    height: 45px;
+    font-size: 14px;
+    color: #000000;
+    padding: 0 15px;
+    font-weight: bold;
+    border-radius: 5px !important;
+    border: 1px solid #000000;
+    background: transparent;
+}
+
+.booking .booking-form select.form-control {
+    padding: 0 10px;
+}
+
+.booking .booking-form .form-control::placeholder {
+    color: #000000;
+    opacity: 1;
+}
+
+.booking .booking-form .form-control:-ms-input-placeholder,
+.booking .booking-form .form-control::-ms-input-placeholder {
+    color: #ffffff;
+}
+
+.booking .booking-form .input-group [data-toggle="datetimepicker"] {
+    cursor: default;
+}
+
+.booking .booking-form .btn.custom-btn {
+    width: 100%;
+    color: #ffffff;
+    background: #000000;
+    border: 1px solid #000000;
+}
+
+.booking .booking-form .btn.custom-btn:hover {
+    color: #000000;
+    background: transparent;
+}
+
+.form-header {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.form-control>h2 {
+    font-family: fantasy;
+    letter-spacing: .1em;
+}
+
+.about-button {
+    text-align: center;
+}
+
+.about-button>button {
+    width: 10em;
+}
+
+.banned:hover {
+    cursor: no-drop;
+}
+
+.section-header>.header-img {
+    height: 15em;
+    width: 45em;
+}
